@@ -13,6 +13,15 @@ buildscript {
 	}
 	repositories {
 		maven {
+			url 'https://maven.aliyun.com/repository/public'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/google'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/gradle-plugin'
+		}
+		maven {
 			url = 'https://repo.spring.io/plugins-snapshot'
 			if (project.hasProperty('artifactoryUsername')) {
 				credentials {
@@ -21,7 +30,7 @@ buildscript {
 				}
 			}
 		}
-		maven { url 'https://plugins.gradle.org/m2/' }
+//		maven { url 'https://plugins.gradle.org/m2/' }
 	}
 }
 apply plugin: 'io.spring.nohttp'
@@ -37,7 +46,16 @@ ext.milestoneBuild = !(snapshotBuild || releaseBuild)
 dependencyManagementExport.projects = subprojects.findAll { !it.name.contains('-boot') }
 
 repositories {
-	mavenCentral()
+	maven {
+		url 'https://maven.aliyun.com/repository/public'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/google'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/gradle-plugin'
+	}
+//	mavenCentral()
 }
 
 subprojects {
