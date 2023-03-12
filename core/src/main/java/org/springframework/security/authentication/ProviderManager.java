@@ -77,7 +77,7 @@ import org.springframework.util.Assert;
  * obtains an authentication result (or an exception) from the "parent"
  * {@code AuthenticationManager} if one has been set. So in this situation, the parent
  * should not generally be configured to publish events or there will be duplicates.
- *
+ * 管理的 {@link AuthenticationProvider}
  *
  * @author Ben Alex
  * @author Luke Taylor

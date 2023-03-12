@@ -20,6 +20,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
 /**
+ * 处理认证工作，只有一个方法。成功返回Authentication，表示认证成功，抛出异常认证失败。返回null，表示不能确定
+ * 主要的实现类 {@link ProviderManager}
  * Processes an {@link Authentication} request.
  *
  * @author Ben Alex
