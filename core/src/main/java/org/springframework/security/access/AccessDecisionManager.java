@@ -23,7 +23,11 @@ import org.springframework.security.core.Authentication;
 
 /**
  * Makes a final access control (authorization) decision.
- *
+ * 投票器，检查用户是否具备应该有的角色，进而透出赞成、反对或弃权。
+ * AccessDecisionManager是一个决策器，来决定此次访问是否被允许。
+ * AccessDecisionManager会挨个遍历 {@link AccessDecisionVoter}，来决定是否允许用户访问。
+ * 类似于 {@link org.springframework.security.authentication.AuthenticationProvider} 和
+ *       {@link org.springframework.security.authentication.ProviderManager}
  * @author Ben Alex
  */
 public interface AccessDecisionManager {
