@@ -35,6 +35,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * Filter implementation to add headers to the current response. Can be useful to add
  * certain headers which enable browser protection. Like X-Frame-Options, X-XSS-Protection
  * and X-Content-Type-Options.
+ * 将头信息加入到响应，默认是开启
  *
  * @author Marten Deinum
  * @author Josh Cummings

@@ -35,7 +35,7 @@ import java.util.Collection;
  * detailed for each method is enforced. See
  * {@link org.springframework.security.core.userdetails.User} for a reference
  * implementation (which you might like to extend or use in your code).
- *
+ * Spring Security 中对用户对象的规范
  * @see UserDetailsService
  * @see UserCache
  *

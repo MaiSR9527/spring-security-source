@@ -24,11 +24,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.util.HtmlUtils;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.Map;
-import java.util.function.Function;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -36,13 +31,19 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
  * For internal use with namespace configuration in the case where a user doesn't
  * configure a login page. The configuration code will insert this filter in the chain
  * instead.
- *
+ * <p>
  * Will only work if a redirect is used to the login page.
+ * 默认登录页面生成
  *
  * @author Luke Taylor
  * @since 2.0
@@ -66,8 +67,7 @@ public class DefaultLoginPageGeneratingFilter extends GenericFilterBean {
 	private String openIDrememberMeParameter;
 	private Map<String, String> oauth2AuthenticationUrlToClientName;
 	private Map<String, String> saml2AuthenticationUrlToProviderName;
-	private Function<HttpServletRequest, Map<String, String>> resolveHiddenInputs = request -> Collections
-		.emptyMap();
+	private Function<HttpServletRequest, Map<String, String>> resolveHiddenInputs = request -> Collections.emptyMap();
 
 
 	public DefaultLoginPageGeneratingFilter() {
@@ -76,8 +76,7 @@ public class DefaultLoginPageGeneratingFilter extends GenericFilterBean {
 	public DefaultLoginPageGeneratingFilter(AbstractAuthenticationProcessingFilter filter) {
 		if (filter instanceof UsernamePasswordAuthenticationFilter) {
 			init((UsernamePasswordAuthenticationFilter) filter, null);
-		}
-		else {
+		} else {
 			init(null, filter);
 		}
 	}
@@ -119,10 +118,11 @@ public class DefaultLoginPageGeneratingFilter extends GenericFilterBean {
 	 * Sets a Function used to resolve a Map of the hidden inputs where the key is the
 	 * name of the input and the value is the value of the input. Typically this is used
 	 * to resolve the CSRF token.
+	 *
 	 * @param resolveHiddenInputs the function to resolve the inputs
 	 */
 	public void setResolveHiddenInputs(
-		Function<HttpServletRequest, Map<String, String>> resolveHiddenInputs) {
+			Function<HttpServletRequest, Map<String, String>> resolveHiddenInputs) {
 		Assert.notNull(resolveHiddenInputs, "resolveHiddenInputs cannot be null");
 		this.resolveHiddenInputs = resolveHiddenInputs;
 	}
@@ -203,7 +203,9 @@ public class DefaultLoginPageGeneratingFilter extends GenericFilterBean {
 
 		boolean loginError = isErrorPage(request);
 		boolean logoutSuccess = isLogoutSuccess(request);
+		// 如果是请求登录、登录错误、推出登录成功，会重定向到登录页
 		if (isLoginUrlRequest(request) || loginError || logoutSuccess) {
+			// 生成登录页面，写回客户端
 			String loginPageHtml = generateLoginPageHtml(request, loginError,
 					logoutSuccess);
 			response.setContentType("text/html;charset=UTF-8");
@@ -212,7 +214,7 @@ public class DefaultLoginPageGeneratingFilter extends GenericFilterBean {
 
 			return;
 		}
-
+		// 否则执行下一个过滤器
 		chain.doFilter(request, response);
 	}
 

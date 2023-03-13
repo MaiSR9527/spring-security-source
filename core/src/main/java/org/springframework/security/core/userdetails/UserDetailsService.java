@@ -26,6 +26,9 @@ package org.springframework.security.core.userdetails;
  * <p>
  * The interface requires only one read-only method, which simplifies support for new
  * data-access strategies.
+ * 负责查询用户数据源的接口，一般是实现该接口，查询用户信息，进行用户信息的验证。例如用户状态、密码匹配等。
+ * Spring Security也提供了 UserDetailsService 的一些默认实现，但是一般不用，开发者实现适合自己系统的。
+ * 引入Spring Boot 的starter后会有自动话的配置 {@link org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration}
  *
  * @see org.springframework.security.authentication.dao.DaoAuthenticationProvider
  * @see UserDetails

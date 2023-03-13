@@ -34,6 +34,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * {@link SecurityContextCallableProcessingInterceptor#beforeConcurrentHandling(org.springframework.web.context.request.NativeWebRequest, Callable)}
  * to populate the {@link SecurityContext} on the {@link Callable}.
  *
+ * 将WebAsyncManager 与 Spring Security 上下文进行集成，默认开启
+ *
  * @author Rob Winch
  * @see SecurityContextCallableProcessingInterceptor
  */

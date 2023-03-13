@@ -80,7 +80,7 @@ import org.springframework.web.filter.GenericFilterBean;
  *
  * which would force the login form and any access to the {@code /secure} path to be made
  * over HTTPS.
- *
+ * 过滤请求协议，默认不开启
  * @author Ben Alex
  */
 public class ChannelProcessingFilter extends GenericFilterBean {
