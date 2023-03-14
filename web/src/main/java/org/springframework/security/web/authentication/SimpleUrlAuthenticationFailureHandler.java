@@ -41,7 +41,8 @@ import org.springframework.util.Assert;
  * <p>
  * If the {@code useForward} property is set, a {@code RequestDispatcher.forward} call
  * will be made to the destination instead of a redirect.
- *
+ * 通过重定向跳转到登录页面，可以通过配置forwardToDestination 改为服务器跳转，
+ * failureUrl {@link org.springframework.security.config.annotation.web.builders.HttpSecurity} 方法的底层实现逻辑就是 {@link SimpleUrlAuthenticationFailureHandler}
  * @author Luke Taylor
  * @since 3.0
  */

@@ -36,6 +36,7 @@ import org.springframework.util.Assert;
  * <p>
  * The map of exception names to URLs should be injected by setting the
  * <tt>exceptionMappings</tt> property.
+ * 可以根据不同的异常类型，映射到不同的路径
  *
  * @author Luke Taylor
  * @since 3.0

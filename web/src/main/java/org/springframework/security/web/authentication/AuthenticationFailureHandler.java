@@ -32,6 +32,7 @@ import org.springframework.security.core.AuthenticationException;
  * implemented depending on the type of the exception. For example, a
  * {@link CredentialsExpiredException} might cause a redirect to a web controller which
  * allowed the user to change their password.
+ * 认证失败后的处理器
  *
  * @author Luke Taylor
  * @since 3.0

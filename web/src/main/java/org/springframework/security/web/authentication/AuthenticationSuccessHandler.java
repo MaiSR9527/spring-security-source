@@ -33,6 +33,7 @@ import org.springframework.security.core.Authentication;
  * where they should be redirected to afterwards (see
  * {@link AbstractAuthenticationProcessingFilter} and subclasses). Other logic may also be
  * included if required.
+ * 登录成功之后的处理器
  *
  * @author Luke Taylor
  * @since 3.0
@@ -41,6 +42,7 @@ public interface AuthenticationSuccessHandler {
 
 	/**
 	 * Called when a user has been successfully authenticated.
+	 * 在处理特定的认证请求的 Authentication Filter 中会用到
 	 *
 	 * @param request the request which caused the successful authentication
 	 * @param response the response
